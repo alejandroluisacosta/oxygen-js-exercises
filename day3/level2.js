@@ -159,7 +159,7 @@ iii. DD/MM/YYYY HH:mm */
 // i
 const timeFormat = () => {
     let now = new Date();
-    alert(`Format i: ${now.getFullYear()}-${now.getMonth()}-${now.getDay()} ${now.getHours()}:${now.getMinutes()}`);
+    alert(`Format i: ${now.getFullYear()}-${now.getMonth() + 1}-${now.getDay() + 1} ${now.getHours()}:${now.getMinutes()}`);
 }
 timeFormat();
 
