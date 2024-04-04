@@ -43,3 +43,12 @@ let regEx2 = /\d+/g;
 let incomes = sentence4.match(regEx2);
 // Print anual income to console
 console.log(parseInt(incomes[0]) * 12 + parseInt(incomes[1]) + parseInt(incomes[2]) * 12);
+
+
+/* I was trying and didn't work
+let incomes2 = sentence4.match(regEx2).map(number => parseInt(number, 10));
+const totalIncome = incomes2.reduce((accumulator, currentValue) => accumulator + currentValue);
+console.log(totalIncome);
+*/
+
+/* END */:
