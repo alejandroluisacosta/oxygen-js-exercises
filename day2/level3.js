@@ -51,4 +51,4 @@ const totalIncome = incomes2.reduce((accumulator, currentValue) => accumulator +
 console.log(totalIncome);
 */
 
-/* END */:
+/* END */
