@@ -45,6 +45,3 @@ for (let i = 0; itCompanies[i]; i++) {
 console.log(`${itCompanies.slice(0, 5).join(', ')} and ${itCompanies[6]} are big IT companies`);
 
 /* 14. Filter out companies which have more than one 'o' without the filter method */
-// Regular expression
-let regex = /oo/g;
-// Array of words that contain regex
