@@ -45,3 +45,24 @@ for (let i = 0; itCompanies[i]; i++) {
 console.log(`${itCompanies.slice(0, 5).join(', ')} and ${itCompanies[6]} are big IT companies`);
 
 /* 14. Filter out companies which have more than one 'o' without the filter method */
+const filterCompanies = companies => {
+    let selectedCompanies = [];
+    for (let company = 0; companies[company]; company++) {
+        let oCount = 0;
+        for (let character = 0; companies[company][character]; character++) {
+            if (companies[company][character] === 'o')
+                oCount++;
+        }
+        if (oCount > 1)
+            selectedCompanies.push(companies[company]);
+    }
+    return (selectedCompanies);
+}
+
+console.log(filterCompanies(itCompanies));
+
+/* 15. Sort the array using sort() method */
+console.log(itCompanies.sort());
+
+/* 16. Reverse the array using reverse() method */
+console.log(itCompanies.reverse());
