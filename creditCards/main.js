@@ -715,7 +715,7 @@ const isExpired = ((month, year) => {
 // Client with expired cards title
 let expiredTitle = document.createElement("h2");
 expiredTitle = 'Clients with expired cards:';
-
+    
 
 // Append names of clients with expired cards to HTML
 cards.forEach((card) => {
