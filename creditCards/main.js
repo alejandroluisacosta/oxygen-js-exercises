@@ -756,6 +756,13 @@ cardTypes.forEach(type => {
     option.innerText = type;
     select.appendChild(option);
 })
+// Dropdown label
+const label = document.createElement("label");
+label.for = "select";
+label.innerText = "Select card type:";
+
+// Append label & dropdown
+root.appendChild(label);
 root.appendChild(select);
 
 // HTML table
@@ -798,4 +805,13 @@ const filterByCard = (typeOfCard) => {
     })
     }
 
-filterByCard('MasterCard');
+// By-default function call
+let selectedValue = cardTypes[0];
+filterByCard(selectedValue);
+
+// Event listener func call
+select.addEventListener("change", () => {
+    filterTable.innerHTML = "";
+    selectedValue = select.value;
+    filterByCard(selectedValue);
+})
