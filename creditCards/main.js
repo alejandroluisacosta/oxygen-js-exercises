@@ -743,3 +743,49 @@ cards.forEach((card) => {
 crear tantos botones como tipos de tarjeta de crédito que existen, de forma que al hacer _click_ 
 sobre cada uno de ellos, los datos se filtren para que solo se vean las tarjetas de ese tipo. */
 
+// Type of card filter title
+let filterByCardTitle = document.createElement("h2");
+filterByCardTitle.innerText = 'Filter by card type';
+root.appendChild(filterByCardTitle);
+
+// HTML table
+const filterTable = document.createElement("table");
+root.appendChild(filterTable);
+
+// Array of card attributes
+const cardAttributes = ["Card number", "Expiration date", "Owner"];
+
+// Filter function
+const filterByCard = (typeOfCard) => {
+    // Arrays of clients for selected card type
+    let filteredClients = cards.filter((client) => client.type === typeOfCard);
+    // Table header
+    const thead = document.createElement("thead");
+    for (attribute in cardAttributes) {
+        const th = document.createElement("th");
+        th.innerText = cardAttributes[attribute];
+        thead.appendChild(th);
+    }
+    // Append table header
+    filterTable.appendChild(thead);
+    // Populate table with rows
+    filteredClients.forEach(client => {
+        // Create row
+        const tr = document.createElement("tr");
+        // Fill rows with client information
+        for (attribute in client) {
+            // td for each clients' attribute
+            const td = document.createElement("td");
+            // Fill td with all values except card type
+            if (attribute !== 'type') {
+                td.innerText = client[attribute];
+                // Append td's text to tr
+                tr.appendChild(td);
+            }
+        }
+        // Append filled tr to filterTable
+        filterTable.appendChild(tr);
+    })
+    }
+
+filterByCard('MasterCard');
