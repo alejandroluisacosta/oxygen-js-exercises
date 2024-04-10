@@ -749,28 +749,30 @@ filterByCardTitle.innerText = 'Filter by card type';
 root.appendChild(filterByCardTitle);
 
 // Card dropdown selector
-const select = document.createElement("select");
+const selectCardType = document.createElement("select");
+selectCardType.id = "selectCardType"
 cardTypes.forEach(type => {
     const option = document.createElement("option");
     option.value = type;
     option.innerText = type;
-    select.appendChild(option);
+    selectCardType.appendChild(option);
 })
+
 // Dropdown label
-const label = document.createElement("label");
-label.for = "select";
-label.innerText = "Select card type:";
+const labelCardType = document.createElement("label");
+labelCardType.for = "selectCardType";
+labelCardType.innerText = "Select card type:";
 
 // Append label & dropdown
-root.appendChild(label);
-root.appendChild(select);
+root.appendChild(labelCardType);
+root.appendChild(selectCardType);
 
 // HTML table
 const filterTable = document.createElement("table");
 root.appendChild(filterTable);
 
 // Array of card attributes
-const cardAttributes = ["Card number", "Expiration date", "Owner"];
+const cardAttributes = ["Type", "Card number", "Expiration date", "Owner"];
 
 // Filter function
 const filterByCard = (typeOfCard) => {
@@ -779,9 +781,11 @@ const filterByCard = (typeOfCard) => {
     // Table header
     const thead = document.createElement("thead");
     for (attribute in cardAttributes) {
-        const th = document.createElement("th");
-        th.innerText = cardAttributes[attribute];
-        thead.appendChild(th);
+        if (cardAttributes[attribute] !== "Type") {
+            const th = document.createElement("th");
+            th.innerText = cardAttributes[attribute];
+            thead.appendChild(th);
+        }
     }
     // Append table header
     filterTable.appendChild(thead);
@@ -810,8 +814,96 @@ let selectedValue = cardTypes[0];
 filterByCard(selectedValue);
 
 // Event listener func call
-select.addEventListener("change", () => {
+selectCardType.addEventListener("change", () => {
     filterTable.innerHTML = "";
-    selectedValue = select.value;
+    selectedValue = selectCardType.value;
     filterByCard(selectedValue);
 })
+
+/* END */
+
+
+
+/* 2. Agrear un input de búsqueda, de forma que al introducir el mes de caducidad
+ aparezcan las tarjetas de crédito que caducan para ese mes. */
+
+ // Filter by expiration date title
+ const expirationMonthTitle = document.createElement("h2");
+ expirationMonthTitle.innerText = "Filter cards by expiration month";
+ root.appendChild(expirationMonthTitle);
+
+ // Array of months
+ const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+// Month dropdown selector
+const selectMonth = document.createElement("select");
+selectMonth.id = "selectMonth"
+months.forEach(month => {
+    const option = document.createElement("option");
+    option.value = month;
+    option.innerText = month;
+    selectMonth.appendChild(option);
+})
+
+// Dropdown label
+const labelMonth = document.createElement("label");
+labelMonth.for = "selectMonth";
+labelMonth.innerText = "Month";
+
+// Append label & dropdown
+root.appendChild(labelMonth);
+root.appendChild(selectMonth);
+
+// Table of expiring cards
+const expireMonthTable = document.createElement("table");
+root.appendChild(expireMonthTable);
+
+// Function to get expiration from card
+const getExpirationMonth = cardExpiration => {
+    let monthNumber = parseInt(cardExpiration[0] + cardExpiration[1]);
+    return months[monthNumber - 1];
+}
+
+// Filter by exp month function
+const filterByExpMonth = month => {
+    // Array of expiring cards
+    let expireOnMonth = cards.filter(card => getExpirationMonth(card.expiration) === month)
+    // Table header
+    const thead = document.createElement("thead");
+    for (attribute in cardAttributes) {
+        const th = document.createElement("th");
+        th.innerText = cardAttributes[attribute];
+        thead.appendChild(th);
+    }
+    // Append table header
+    expireMonthTable.appendChild(thead);
+    // Populate table with rows
+    expireOnMonth.forEach(client => {
+        // Create row
+        const tr = document.createElement("tr");
+        // Fill rows with client information
+        for (attribute in client) {
+            // td for each clients' attribute
+            const td = document.createElement("td");
+            // Fill td with clients' info
+            td.innerText = client[attribute];
+            // Append td's text to tr
+            tr.appendChild(td);
+        }
+        // Append filled tr to filterTable
+        expireMonthTable.appendChild(tr);
+    })
+}
+
+// By-default function call
+let selectedMonth1 = months[0];
+filterByExpMonth(selectedMonth1);
+
+// Event listener func call
+selectMonth.addEventListener("change", () => {
+    expireMonthTable.innerHTML = "";
+    selectedMonth1 = selectMonth.value;
+    filterByExpMonth(selectedMonth1);
+})
+
+/* END */
