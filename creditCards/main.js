@@ -907,3 +907,114 @@ selectMonth.addEventListener("change", () => {
 })
 
 /* END */
+
+/* 3. Hacer lo mismo para el año. De forma que tienes que filtrar por año y mes. 
+Ej: Tarjetas que caducan el mes 04 del año 25 */
+
+// Array of years
+const years = [];
+for (let year = 4; year <= 10; year++)
+    years[year - 4] = year + 20;
+console.log(years);
+
+// Filter by expiration date title
+const expirationMAndYTitle = document.createElement("h2");
+expirationMAndYTitle.innerText = "Filter cards by expiration month & year";
+root.appendChild(expirationMAndYTitle);
+
+// Month dropdown selector
+const selectMonth2 = document.createElement("select");
+selectMonth2.id = "selectMonth2"
+months.forEach(month => {
+   const option = document.createElement("option");
+   option.value = month;
+   option.innerText = month;
+   selectMonth2.appendChild(option);
+})
+
+// Dropdown month label
+const labelMonth2 = document.createElement("label");
+labelMonth2.for = "selectMonth2";
+labelMonth2.innerText = "Month";
+
+// Year dropdown selector
+const selectYear = document.createElement("select");
+selectYear.id = "selectYear"
+years.forEach(year => {
+   const option = document.createElement("option");
+   option.value = year;
+   option.innerText = year;
+   selectYear.appendChild(option);
+})
+
+// Dropdown year label
+const labelYear = document.createElement("label");
+labelYear.for = "selectYelabelYear";
+labelYear.innerText = "Year";
+
+// Append labels & dropdowns
+root.appendChild(labelMonth2);
+root.appendChild(selectMonth2);
+root.appendChild(labelYear);
+root.appendChild(selectYear);
+
+// Table of expiring cards
+const expireMAndYTable = document.createElement("table");
+root.appendChild(expireMAndYTable);
+
+// Function to get expiration year from card
+const getExpirationYear = cardExpiration => parseInt(cardExpiration[3] + cardExpiration[4]);
+
+// Filter by exp month function
+const filterByExpMAndY = (month, year) => {
+   // Array of expiring cards
+   let expireOnMAndY = cards.filter(card => getExpirationMonth(card.expiration) === month && getExpirationYear(card.expiration) === year);
+   // Table header
+   const thead = document.createElement("thead");
+   for (attribute in cardAttributes) {
+       const th = document.createElement("th");
+       th.innerText = cardAttributes[attribute];
+       thead.appendChild(th);
+   }
+   // Append table header
+   expireMAndYTable.appendChild(thead);
+   // Populate table with rows
+   expireOnMAndY.forEach(client => {
+       // Create row
+       const tr = document.createElement("tr");
+       // Fill rows with client information
+       for (attribute in client) {
+           // td for each clients' attribute
+           const td = document.createElement("td");
+           // Fill td with clients' info
+           td.innerText = client[attribute];
+           // Append td's text to tr
+           tr.appendChild(td);
+       }
+       // Append filled tr to filterTable
+       expireMAndYTable.appendChild(tr);
+   })
+}
+
+// By-default function call
+let selectedMonth2 = months[0];
+let selectedYear = years[0]
+filterByExpMAndY(selectedMonth2, selectedYear); 
+
+// Event listener for month call
+selectMonth2.addEventListener("change", () => {
+   expireMAndYTable.innerHTML = "";
+   selectedMonth2 = selectMonth2.value;
+   filterByExpMAndY(selectedMonth2, selectedYear);
+   console.log(selectedMonth2);
+   console.log(selectedYear);
+})
+
+// Event listener for year call
+selectYear.addEventListener("change", () => {
+    expireMAndYTable.innerHTML = "";
+    selectedYear = parseInt(selectYear.value);
+    filterByExpMAndY(selectedMonth2, selectedYear);
+    console.log(selectedMonth2);
+    console.log(selectedYear);
+ })
