@@ -748,6 +748,16 @@ let filterByCardTitle = document.createElement("h2");
 filterByCardTitle.innerText = 'Filter by card type';
 root.appendChild(filterByCardTitle);
 
+// Card dropdown selector
+const select = document.createElement("select");
+cardTypes.forEach(type => {
+    const option = document.createElement("option");
+    option.value = type;
+    option.innerText = type;
+    select.appendChild(option);
+})
+root.appendChild(select);
+
 // HTML table
 const filterTable = document.createElement("table");
 root.appendChild(filterTable);
