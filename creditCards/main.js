@@ -600,6 +600,9 @@ const cards = [
         "owner": "Marques Sauer"
     }
 ]
+
+/* DIA 1: LA AMENAZA DEL OBJETO */
+
 // 1. Agrupar por el tipo de tarjeta de creditto cuales existen dentro de la info
 
 // Root element
@@ -714,7 +717,8 @@ const isExpired = ((month, year) => {
 
 // Client with expired cards title
 let expiredTitle = document.createElement("h2");
-expiredTitle = 'Clients with expired cards:';
+expiredTitle.innerText = 'Clients with expired cards:';
+root.appendChild(expiredTitle);
     
 
 // Append names of clients with expired cards to HTML
@@ -726,3 +730,16 @@ cards.forEach((card) => {
             root.appendChild(expiredClient);
         }
     })
+
+/* END */
+
+
+
+
+
+/* DIA 2: LA VENGANZA DEL EVENTO */
+
+/* 1. Con los tipos de tarjetas que se han filtrado anteriormente, 
+crear tantos botones como tipos de tarjeta de crédito que existen, de forma que al hacer _click_ 
+sobre cada uno de ellos, los datos se filtren para que solo se vean las tarjetas de ese tipo. */
+
