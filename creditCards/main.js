@@ -600,13 +600,18 @@ const cards = [
         "owner": "Marques Sauer"
     }
 ]
+// Root element
+const root = document.getElementById("root");
 
 /* DIA 1: LA AMENAZA DEL OBJETO */
 
-// 1. Agrupar por el tipo de tarjeta de creditto cuales existen dentro de la info
+// Title
+const day1Title = document.createElement("h2");
+day1Title.innerText = "Día 1: La Amenaza del Objeto";
+day1Title.classList = "day-title"
+root.appendChild(day1Title);
 
-// Root element
-const root = document.getElementById("root");
+// 1. Agrupar por el tipo de tarjeta de creditto cuales existen dentro de la info
 
 // Card-types array
 let cardTypes = [];
@@ -627,11 +632,22 @@ console.log(cardTypes);
 
 // 2. Mostrar la información en HTML de forma que se muestre una tabla (<table>) por cada tipo de 
 
+// Container
+const day1Ex2 = document.createElement("div");
+day1Ex2.classList = "exercise";
+root.appendChild(day1Ex2);
+
+// Title
+const day1Ex2Title = document.createElement("h2");
+day1Ex2Title.innerText = "2. Tarjetas separadas por tipo";
+day1Ex2.appendChild(day1Ex2Title);
+
 // Table with types of cards
 const table = document.createElement("table");
+table.classList = "ex2"
 
 // Append table to root elmnt
-root.appendChild(table);
+day1Ex2.appendChild(table);
 
 // Populate table headers
 cardTypes.forEach((element) => {
@@ -697,8 +713,10 @@ for (let card = 0; cards[card]; card++) {
 // Display on website
 let expireThisYear = document.createElement("h2");
 const date = new Date();
-expireThisYear.textContent = `Amount of cards that expire in ${date.getFullYear()}: ${expireCounter}`;
+expireThisYear.textContent = `3. Tarjetas que expiran en ${date.getFullYear()}: ${expireCounter}`;
 root.appendChild(expireThisYear);
+
+expireThisYear.classList = "exercise"
 
 /* END */
 
@@ -706,6 +724,11 @@ root.appendChild(expireThisYear);
 
 
 /* 4. Indicar en HTML el nombre de las personas que tienen la tarjeta de credito caducada (inferior a este mes) */
+
+// Container
+const day1Ex4 = document.createElement("div");
+day1Ex4.classList = "exercise";
+root.appendChild(day1Ex4);
 
 // Expired function
 const isExpired = ((month, year) => {
@@ -715,10 +738,10 @@ const isExpired = ((month, year) => {
         return false;
 })
 
-// Client with expired cards title
-let expiredTitle = document.createElement("h2");
-expiredTitle.innerText = 'Clients with expired cards:';
-root.appendChild(expiredTitle);
+// Titleitle
+let day1Ex4Title = document.createElement("h2");
+day1Ex4Title.innerText = '4. Clientes con tarjetas expiradas';
+day1Ex4.appendChild(day1Ex4Title);
     
 
 // Append names of clients with expired cards to HTML
@@ -727,7 +750,7 @@ cards.forEach((card) => {
     if (isExpired(parseInt(card.expiration[0] + card.expiration[1]), parseInt(card.expiration[3] + card.expiration[4]))) {
             expiredClient = document.createElement("p");
             expiredClient.innerText = card.owner;
-            root.appendChild(expiredClient);
+            day1Ex4.appendChild(expiredClient);
         }
     })
 
@@ -739,14 +762,25 @@ cards.forEach((card) => {
 
 /* DIA 2: LA VENGANZA DEL EVENTO */
 
+const day2Title = document.createElement("h2");
+day2Title.innerText = "Día 2: La Venganza del Evento";
+day2Title.classList = "day-title"
+root.appendChild(day2Title);
+
+
 /* 1. Con los tipos de tarjetas que se han filtrado anteriormente, 
 crear tantos botones como tipos de tarjeta de crédito que existen, de forma que al hacer _click_ 
 sobre cada uno de ellos, los datos se filtren para que solo se vean las tarjetas de ese tipo. */
 
-// Type of card filter title
-let filterByCardTitle = document.createElement("h2");
-filterByCardTitle.innerText = 'Filter by card type';
-root.appendChild(filterByCardTitle);
+// Container
+const day2Ex1 = document.createElement("div");
+day2Ex1.classList = "exercise";
+root.appendChild(day2Ex1);
+
+// Title
+const day2ex1Title = document.createElement("h2");
+day2ex1Title.innerText = '1. Filtrar por tipo de tarjeta';
+day2Ex1.appendChild(day2ex1Title);
 
 // Card dropdown selector
 const selectCardType = document.createElement("select");
@@ -763,13 +797,18 @@ const labelCardType = document.createElement("label");
 labelCardType.for = "selectCardType";
 labelCardType.innerText = "Select card type:";
 
+// Div for label and input
+const day2Ex1Input = document.createElement("div");
+day2Ex1Input.classList = "input-container"
+day2Ex1.appendChild(day2Ex1Input);
+
 // Append label & dropdown
-root.appendChild(labelCardType);
-root.appendChild(selectCardType);
+day2Ex1Input.appendChild(labelCardType);
+day2Ex1Input.appendChild(selectCardType);
 
 // HTML table
 const filterTable = document.createElement("table");
-root.appendChild(filterTable);
+day2Ex1.appendChild(filterTable);
 
 // Array of card attributes
 const cardAttributes = ["Type", "Card number", "Expiration date", "Owner"];
@@ -827,10 +866,15 @@ selectCardType.addEventListener("change", () => {
 /* 2. Agrear un input de búsqueda, de forma que al introducir el mes de caducidad
  aparezcan las tarjetas de crédito que caducan para ese mes. */
 
+// Container
+const day2Ex2 = document.createElement("div");
+day2Ex2.classList = "exercise";
+root.appendChild(day2Ex2);
+
  // Filter by expiration date title
- const expirationMonthTitle = document.createElement("h2");
- expirationMonthTitle.innerText = "Filter cards by expiration month";
- root.appendChild(expirationMonthTitle);
+ const day2Ex2Title = document.createElement("h2");
+ day2Ex2Title.innerText = "2. Filtrar tarjetas por mes de expiración";
+ day2Ex2.appendChild(day2Ex2Title);
 
  // Array of months
  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -851,12 +895,12 @@ labelMonth.for = "selectMonth";
 labelMonth.innerText = "Month";
 
 // Append label & dropdown
-root.appendChild(labelMonth);
-root.appendChild(selectMonth);
+day2Ex2.appendChild(labelMonth);
+day2Ex2.appendChild(selectMonth);
 
 // Table of expiring cards
 const expireMonthTable = document.createElement("table");
-root.appendChild(expireMonthTable);
+day2Ex2.appendChild(expireMonthTable);
 
 // Function to get expiration from card
 const getExpirationMonth = cardExpiration => {
@@ -911,16 +955,21 @@ selectMonth.addEventListener("change", () => {
 /* 3. Hacer lo mismo para el año. De forma que tienes que filtrar por año y mes. 
 Ej: Tarjetas que caducan el mes 04 del año 25 */
 
+// Container
+const day2Ex3 = document.createElement("div");
+day2Ex3.classList = "exercise";
+root.appendChild(day2Ex3);
+
 // Array of years
 const years = [];
 for (let year = 4; year <= 10; year++)
     years[year - 4] = year + 20;
 console.log(years);
 
-// Filter by expiration date title
-const expirationMAndYTitle = document.createElement("h2");
-expirationMAndYTitle.innerText = "Filter cards by expiration month & year";
-root.appendChild(expirationMAndYTitle);
+// Title
+const day2Ex3Title = document.createElement("h2");
+day2Ex3Title.innerText = "3. Filtrar tarjetas por mes y año de expiración";
+day2Ex3.appendChild(day2Ex3Title);
 
 // Month dropdown selector
 const selectMonth2 = document.createElement("select");
@@ -953,14 +1002,14 @@ labelYear.for = "selectYelabelYear";
 labelYear.innerText = "Year";
 
 // Append labels & dropdowns
-root.appendChild(labelMonth2);
-root.appendChild(selectMonth2);
-root.appendChild(labelYear);
-root.appendChild(selectYear);
+day2Ex3.appendChild(labelMonth2);
+day2Ex3.appendChild(selectMonth2);
+day2Ex3.appendChild(labelYear);
+day2Ex3.appendChild(selectYear);
 
 // Table of expiring cards
 const expireMAndYTable = document.createElement("table");
-root.appendChild(expireMAndYTable);
+day2Ex3.appendChild(expireMAndYTable);
 
 // Function to get expiration year from card
 const getExpirationYear = cardExpiration => parseInt(cardExpiration[3] + cardExpiration[4]);
