@@ -4,9 +4,22 @@ table {
 td {
     text-align: center;
     border: 1px solid black;
+    padding-right: 1rem;
+    padding-left: 1rem;
 }
 
 .day-title, .exercise {
     margin-bottom: 5rem;
 }
 
+.input-container {
+    margin-bottom: 2rem;
+}
+
+label {
+    margin-right: 0.5rem;
+}
+
+select {
+    margin-right: 1rem;
+}

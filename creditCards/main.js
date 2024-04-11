@@ -606,7 +606,7 @@ const root = document.getElementById("root");
 /* DIA 1: LA AMENAZA DEL OBJETO */
 
 // Title
-const day1Title = document.createElement("h2");
+const day1Title = document.createElement("h1");
 day1Title.innerText = "Día 1: La Amenaza del Objeto";
 day1Title.classList = "day-title"
 root.appendChild(day1Title);
@@ -762,7 +762,7 @@ cards.forEach((card) => {
 
 /* DIA 2: LA VENGANZA DEL EVENTO */
 
-const day2Title = document.createElement("h2");
+const day2Title = document.createElement("h1");
 day2Title.innerText = "Día 2: La Venganza del Evento";
 day2Title.classList = "day-title"
 root.appendChild(day2Title);
@@ -892,11 +892,16 @@ months.forEach(month => {
 // Dropdown label
 const labelMonth = document.createElement("label");
 labelMonth.for = "selectMonth";
-labelMonth.innerText = "Month";
+labelMonth.innerText = "Month:";
+
+// Div for label and input
+const day2Ex2Input = document.createElement("div");
+day2Ex2Input.classList = "input-container"
+day2Ex2.appendChild(day2Ex2Input);
 
 // Append label & dropdown
-day2Ex2.appendChild(labelMonth);
-day2Ex2.appendChild(selectMonth);
+day2Ex2Input.appendChild(labelMonth);
+day2Ex2Input.appendChild(selectMonth);
 
 // Table of expiring cards
 const expireMonthTable = document.createElement("table");
@@ -984,7 +989,7 @@ months.forEach(month => {
 // Dropdown month label
 const labelMonth2 = document.createElement("label");
 labelMonth2.for = "selectMonth2";
-labelMonth2.innerText = "Month";
+labelMonth2.innerText = "Month:";
 
 // Year dropdown selector
 const selectYear = document.createElement("select");
@@ -999,13 +1004,18 @@ years.forEach(year => {
 // Dropdown year label
 const labelYear = document.createElement("label");
 labelYear.for = "selectYelabelYear";
-labelYear.innerText = "Year";
+labelYear.innerText = "Year:";
+
+// Div for label and input
+const day2Ex3Input = document.createElement("div");
+day2Ex3Input.classList = "input-container"
+day2Ex3.appendChild(day2Ex3Input);
 
 // Append labels & dropdowns
-day2Ex3.appendChild(labelMonth2);
-day2Ex3.appendChild(selectMonth2);
-day2Ex3.appendChild(labelYear);
-day2Ex3.appendChild(selectYear);
+day2Ex3Input.appendChild(labelMonth2);
+day2Ex3Input.appendChild(selectMonth2);
+day2Ex3Input.appendChild(labelYear);
+day2Ex3Input.appendChild(selectYear);
 
 // Table of expiring cards
 const expireMAndYTable = document.createElement("table");
