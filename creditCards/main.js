@@ -1071,45 +1071,39 @@ const filterByExpMAndY = (month, year) => {
    expireOnMAndY.map((client, index) => {
        // Create row
        const tr = document.createElement("tr");
-       // Fill rows with client information
+       // Fill rows with card basic information
        for (attribute in client) {
            if (attribute === "type" || attribute === "number") {
-                // td for each clients' attribute
                 const td = document.createElement("td");
-                // Fill td with clients' info
                 td.innerText = client[attribute];
-                // Append td's text to tr
                 tr.appendChild(td);
             }
         }
+        expireMAndYTable.appendChild(tr);
+        // Add cients' "more information"
+        const moreInfo = document.createElement("p");
+        moreInfo.innerText = `Owner: ${expireOnMAndY[index].owner} | Address: ${expireOnMAndY[index].address}.`;
+        moreInfo.classList = "hidden";
+        moreInfo.id = `more-info-${index}`;
+        expireMAndYTable.appendChild(moreInfo);
         // Button
         const button = document.createElement("button");
         button.innerText = "More info";
         button.id = index;
         button.addEventListener("click", (event) => {
+            const toHide = document.getElementById(`more-info-${event.target.id}`)
             if (button.classList.contains("open")) {
-                let moreInfoElements = document.querySelectorAll(".more-info");
-                moreInfoElements.forEach(element => {
-                    element.classList.add("hidden");
-                })
+                toHide.classList.add("hidden");
                 button.innerText = "More info";
                 button.classList.remove("open");
             }
             else {
-                for (attribute in newCardAttributes) {
-                    if (newCardAttributes[attribute] !== "Type" && newCardAttributes[attribute] !== "Card number") {
-                        const moreInfo = document.createElement("p");
-                        moreInfo.innerText = `${newCardAttributes[attribute]}: ${cards[event.target.id][newCardAttributes[attribute].toLowerCase()]}`;
-                        moreInfo.classList = "more-info";
-                        tr.appendChild(moreInfo);
-                    }}
+                toHide.classList.remove("hidden");
                 button.innerText = "Less";
                 button.classList.add("open");
                 }
         })
         tr.appendChild(button);
-       // Append filled tr to filterTable
-       expireMAndYTable.appendChild(tr);
    })
 }
 
