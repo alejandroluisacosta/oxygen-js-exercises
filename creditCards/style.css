@@ -8,6 +8,10 @@ td {
     padding-left: 1rem;
 }
 
+.more-info-td {
+    overflow-x: auto;
+}
+
 .day-title, .exercise {
     margin-bottom: 5rem;
 }
