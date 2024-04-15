@@ -1131,5 +1131,3 @@ selectYear.addEventListener("change", () => {
  })
 
  /* END */
-
- 
