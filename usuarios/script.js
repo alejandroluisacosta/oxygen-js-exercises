@@ -13,7 +13,7 @@ const request = fetch(url)
         if (response.ok) {
             response.json()
             .then((jsonData) => {
-                users = jsonData.data;
+                users = jsonData.data; // Convert these into Users
                 renderUsersInHtml(users);
                 addInputEventListener();
             })
