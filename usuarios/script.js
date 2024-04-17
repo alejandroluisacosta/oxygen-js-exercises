@@ -1,17 +1,21 @@
 import Person from './person.js';
 import User from './user.js';
+import addInputEventListener from './input.js';
 
 /* 1. Consumir (fetch) la API de usuarios */
 
 let users = [];
-const request = fetch(
-    "https://fakerapi.it/api/v1/users?_quantity=20&_gender=male")
+
+let url = "https://fakerapi.it/api/v1/users?_quantity=20&_gender=male";
+
+const request = fetch(url)
     .then((response) => {
         if (response.ok) {
             response.json()
             .then((jsonData) => {
                 users = jsonData.data;
                 renderUsersInHtml(users);
+                addInputEventListener();
             })
             .catch(error => alert("Problemas con API"));
         }
@@ -34,14 +38,6 @@ const renderUsersInHtml = users => {
     userTable.appendChild(tableHead);
     const tableBody = document.createElement("tbody")
     userTable.appendChild(tableBody);
-    
-    // Object.getOwnPropertyNames(User.prototype).forEach(property => {
-    //     if (property !== 'constructor') {
-    //         const th = document.createElement("th");
-    //         th.innerText = property;
-    //         tableHead.appendChild(th);
-    //     }
-    // });
 
     users.forEach(user => {
         const tr = document.createElement("tr");
@@ -54,3 +50,6 @@ const renderUsersInHtml = users => {
     })
 
 }
+
+
+export { users, renderUsersInHtml };
