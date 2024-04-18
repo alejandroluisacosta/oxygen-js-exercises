@@ -8,6 +8,14 @@ export let users = [];
 
 let baseUrl = "https://fakerapi.it/api/v1/users?_quantity=20&_gender=male";
 
+const root = document.getElementById("root");
+
+export const clearDom = () => {
+    while (root.firstChild) {
+        root.removeChild(root.firstChild);
+    }
+}
+
 export const fetchData = url => {
     const request = fetch(url)
     .then((response) => {
@@ -18,6 +26,7 @@ export const fetchData = url => {
                     let newUser = new User(user.email, user.firstname, user.id, user.image, user.ip, user.lastname, user.macAddress, user.password, user.username, user.uuid, user.website);
                     users.push(newUser);
                 });
+                clearDom();
                 renderUsersInHtml(users);
                 addInputEventListener();
             })

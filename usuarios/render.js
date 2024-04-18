@@ -1,8 +1,9 @@
 import { users } from "./script.js";
 
+const root = document.getElementById("root");
+
 const renderUsersInHtml = users => {
     
-    const root = document.getElementById("root");
     const userTable = document.createElement("table");
     userTable.id = "user-table";
     root.appendChild(userTable);
