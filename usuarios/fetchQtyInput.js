@@ -6,8 +6,10 @@ const root = document.getElementById("root");
 
 const qtyInput = document.getElementById("fetch-by-quantity");
 qtyInput.addEventListener("change", event => {
-    const newUrl = `https://fakerapi.it/api/v1/users?_quantity=${event.target.value}&_gender=male`;
-    console.log(root);
-    users.length = 0;
+    let userInput = event.target.value;
+    if (userInput === "")
+        userInput = 20;
+    const newUrl = `https://fakerapi.it/api/v1/users?_quantity=${userInput}&_gender=male`;
+    root.innerHTML = "";
     fetchData(newUrl);
 })

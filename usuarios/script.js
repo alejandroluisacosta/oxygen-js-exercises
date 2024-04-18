@@ -17,6 +17,8 @@ export const clearDom = () => {
 }
 
 export const fetchData = url => {
+    users = [];
+    console.log(url);
     const request = fetch(url)
     .then((response) => {
         if (response.ok) {
@@ -26,7 +28,7 @@ export const fetchData = url => {
                     let newUser = new User(user.email, user.firstname, user.id, user.image, user.ip, user.lastname, user.macAddress, user.password, user.username, user.uuid, user.website);
                     users.push(newUser);
                 });
-                clearDom();
+                console.log(users);
                 renderUsersInHtml(users);
                 addInputEventListener();
             })
