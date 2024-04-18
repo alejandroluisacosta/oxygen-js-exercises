@@ -15,7 +15,6 @@ const request = fetch(url)
             .then((jsonData) => {
                 jsonData.data.forEach(user => {
                     let newUser = new User(user.email, user.firstname, user.id, user.image, user.ip, user.lastname, user.macAddress, user.password, user.username, user.uuid, user.website);
-                    console.log(newUser);
                     users.push(newUser);
                 });
                 renderUsersInHtml(users);
