@@ -1,14 +1,15 @@
 import Person from './person.js';
 import User from './user.js';
-import addInputEventListener from './input.js';
+import addInputEventListener from './filterByNameInput.js';
 import renderUsersInHtml from './render.js';
 
 
 export let users = [];
 
-let url = "https://fakerapi.it/api/v1/users?_quantity=20&_gender=male";
+let baseUrl = "https://fakerapi.it/api/v1/users?_quantity=20&_gender=male";
 
-const request = fetch(url)
+export const fetchData = url => {
+    const request = fetch(url)
     .then((response) => {
         if (response.ok) {
             response.json()
@@ -24,6 +25,6 @@ const request = fetch(url)
         }
     })
     .catch(error => alert("Problemas al obtener datos de la API"))
+}
 
-const alex = new User(1, "alex", "acosta", "ale@ale", "image", 1.11, 1.112, 1234, "aacosta", 1, "ale.com");
-console.log(alex);
+fetchData(baseUrl);

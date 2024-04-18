@@ -4,6 +4,7 @@ const renderUsersInHtml = users => {
     
     const root = document.getElementById("root");
     const userTable = document.createElement("table");
+    userTable.id = "user-table";
     root.appendChild(userTable);
 
     const tableHead = document.createElement("thead");
