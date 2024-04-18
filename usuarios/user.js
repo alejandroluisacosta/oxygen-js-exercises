@@ -1,7 +1,7 @@
 import Person from './person.js';
 
 class User extends Person {
-    constructor(id, firstName, lastName, email, image, ip, macAddress, password, username, uuid, website) {
+    constructor(email, firstName, id, image, ip, lastName, macAddress, password, username, uuid, website) {
         super(id, firstName, lastName);
         this._email = email;
         this._image = image;
