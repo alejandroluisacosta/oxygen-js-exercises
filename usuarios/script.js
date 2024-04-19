@@ -10,12 +10,6 @@ let baseUrl = "https://fakerapi.it/api/v1/users?_quantity=20&_gender=male";
 
 const root = document.getElementById("root");
 
-export const clearDom = () => {
-    while (root.firstChild) {
-        root.removeChild(root.firstChild);
-    }
-}
-
 export const fetchData = url => {
     users = [];
     console.log(url);
